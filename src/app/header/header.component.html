@@ -1,0 +1,35 @@
+<mat-toolbar color="primary">
+        <span><img src="/assets/images/logo.png" height=30 width=41></span>
+        <a mat-button routerLink='/home' routerLinkActive="active"><span class="fa fa-home fa-lg"></span> Home</a>
+        <a mat-button  routerLink='/episodes' routerLinkActive="active"><span class="fa fa-list fa-lg"></span> Episodes</a>
+        <a mat-button routerLink='/about' routerLinkActive="active"><span class="fa fa-info fa-lg"></span> About</a>
+        <a mat-button routerLink='/contact' routerLinkActive="active"><span class="fa fa-address-card fa-lg"></span> Contact</a>
+        <span calas="flex-spacer"></span>
+        <a mat-button (click)="openLoginForm()"><span class="fa fa-sign-in fa-lg"></span>Login</a>
+      </mat-toolbar>
+      
+      <div class="container jumbotron"
+          fxLayout="row"
+          fxLayout.sm="column" 
+          fxLayout.xs="column" 
+          fxLayoutAlign.xs="start center"
+          fxLayoutAlign.sm="start center" 
+          fxLayoutAlign.gt-sm="center center" 
+          fxLayoutGap="10px">
+      
+        <div fxFlex fxFlex.gt-sm="50%">
+                <h1>Friends</h1>
+                <p>Friends is an American sitcom television series, created by David Crane and Marta Kauffman, which
+                    aired on NBC from September 22, 1994, to May 6, 2004, lasting ten seasons.[1] With an ensemble
+                    cast starring Jennifer Aniston, Courteney Cox, Lisa Kudrow, Matt LeBlanc, Matthew Perry and
+                    David Schwimmer, the show revolved around six friends in their 20s and 30s who lived in
+                    Manhattan, New York City. The series was produced by Bright/Kauffman/Crane Productions, in
+                    association with Warner Bros. Television. The original executive producers were Kevin S. Bright,
+                    Kauffman, and Crane.</p>
+    </div>
+        <div fxFlex fxFlex.gt-sm="40%">
+          <img src="/assets/images/logo.png" alt="Logo" height="100" width="100">
+        </div>
+        <div fxFlex></div>
+      </div>
+

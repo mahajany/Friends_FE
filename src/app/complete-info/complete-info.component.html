@@ -1,0 +1,51 @@
+<div class="container" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"
+    fxLayoutAlign.gt-md="space-around center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+
+    <div fxFlex="40" *ngIf="episode" [@visibility]="visibility">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>
+                    <h1> Season {{episode.season}}, episode {{episode.number}}</h1>
+                    <h3>{{episode.name | lowercase}}</h3>
+                </mat-card-title>
+            </mat-card-header>
+            <img mat-card-image src={{episode.image.medium}} alt={{episode.name}}>
+            <mat-card-content>
+                <p> {{episode.summary}}</p>
+                Episode-ID:{{episode.id}}, dated {{episode.airstamp }}.
+                More on <a href={{episode.url}} > http://www.tvmaze.com/</a>!
+                Season-{{episode.season}}, episode-{{episode.number}}, it was aired on {{episode.airdate|date}}, {{episode.airtime}}, and had a run-time of  {{episode.runtime}} minutes.
+            </mat-card-content>
+            <mat-card-actions>
+                <button *ngIf="prev" mat-button  [routerLink]="['/detail', prev]">Prev</button>
+                <button mat-button>Like</button>
+                <button mat-button>Share</button>
+                <button *ngIf="next" mat-button  [routerLink]="['/detail', next]">Next</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+
+    <div fxFlex="40" *ngIf="episode" [@visibility]="visibility">
+        <mat-card>
+            <p>Display the review-comments here</p>
+            <mat-grid-list fxFlex cols="2" rowHeight="200px">
+                <mat-grid-tile *ngFor="let review of reviews">
+                    <mat-grid-tile-footer>
+                        <h1> {{review.author}}, {{review.email}| lowercase}</h1>
+                </mat-grid-tile-footer>
+                <p matLine>
+                    <span> {{review.comment}}</span>
+                            </p>
+                            <p>
+                                {{review.rating}}
+                            </p>
+                            {{review.date | date}}
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-card>
+    </div>
+    <div [hidden]="errMsg" fxFlex *ngIf="errMsg">
+        <h2>Error</h2>
+        <h4>{{errMsg}}</h4>
+    </div>
+</div>

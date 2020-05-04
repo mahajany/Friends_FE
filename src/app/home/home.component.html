@@ -1,0 +1,40 @@
+Home Component
+<div class="container"
+     fxLayout="row"
+     fxLayout.sm="column"
+     fxLayout.xs="column"
+     fxLayoutAlign.gt-md="space-around center"
+     fxLayoutGap="10px">
+
+<mat-card *ngIf="episode" fxFlex>
+  <mat-card-header>
+    <div mat-card-avatar></div>
+    <mat-card-title>
+      <h3>{{episode.name | uppercase}}</h3>
+    </mat-card-title>
+  </mat-card-header>
+   <img   mat-card-image src={{episode.image.medium}} alt={{episode.name}}>
+  <mat-card-content>
+    <p>{{episode.summary}}
+    </p>
+  </mat-card-content>
+</mat-card>
+
+<mat-card *ngIf="firstShow" fxFlex>
+  <mat-card-header>
+    <div mat-card-avatar></div>
+    <mat-card-title>
+      <h3>{{firstShow.name | uppercase}}</h3>
+    </mat-card-title>
+  </mat-card-header>
+  <img mat-card-image src={{firstShow.image.original}} alt={{firstShow.name}}>
+  <mat-card-content>
+    <p>{{firstShow.summary}}
+    </p>
+  </mat-card-content>
+</mat-card>
+
+<div fxFlex [hidden] *ngIf="errMsg">
+  <h2>Error</h2>
+  <h4>{{errMsg}}</h4>
+</div>

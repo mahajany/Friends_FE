@@ -1,0 +1,45 @@
+<div class="container" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"
+    fxLayoutAlign.gt-md="space-around center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+    <div fxFlex="40">
+        <mat-card *ngIf="selectedEpisode"
+        [routerLink]="['/detail', selectedEpisode._id]">
+            <mat-card-header>
+                <mat-card-title>
+                    <h3>{{selectedEpisode.name | lowercase}}</h3>
+                </mat-card-title>
+            </mat-card-header>
+            <img mat-card-image src={{selectedEpisode.image.medium}} alt={{selectedEpisode.name}}>
+            <mat-card-content>
+                <p> {{selectedEpisode.summary}}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button>Like</button>
+                <button mat-button>Share</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+
+    <div fxFlex="40">
+        <mat-card *ngIf="selectedEpisode">
+            <p>Display the review-comments here</p>
+            <mat-grid-list fxFlex cols="2" rowHeight="200px">
+                <mat-grid-tile *ngFor="let review of reviews">
+                    <mat-grid-tile-footer>
+                        <h1> {{review.author}}, {{review.email}| lowercase}</h1>
+                </mat-grid-tile-footer>
+                <p matLine>
+                    <span> {{review.comment}}</span>
+                            </p>
+                            <p>
+                                {{review.rating}}
+                            </p>
+                            {{review.date | date}}
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-card>
+    </div>
+    <div [hidden]="errMsg" fxFlex *ngIf="errMsg">
+        <h2>Error</h2>
+        <h4>{{errMsg}}</h4>
+    </div>
+</div>

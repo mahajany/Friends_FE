@@ -1,0 +1,44 @@
+<hr>
+<div class="container" fxLayout="column" fxLayoutGap="10px">
+    <div fxFlex>
+        <div>
+            <h3>Episodes</h3>
+            <hr>
+        </div>
+    </div>
+    <div fxFlex fxFlex *ngIf="pagedEpisodes">
+        Page {{pagedEpisodes.pageable.pageNumber+1}} of {{pagedEpisodes.totalPages}},
+        {{pagedEpisodes.pageable.pageSize}} episodes of {{pagedEpisodes.totalElements}} episodes.
+        <a [hidden]="pagedEpisodes.first=='false'" href='#'>Prev</a>
+        <a [hidden]="pagedEpisodes.last=='false'" href='#'>Next</a>
+        </div>
+        
+    <div fxFlex fxFlex *ngIf="episodes">
+        <mat-grid-list fxFlex cols="2" rowHeight="200px">
+            <mat-grid-tile *ngFor="let ep of episodes" (click)="onSelected(ep)" appHilight>
+                <div *ngIf="ep.image.medium">
+                    <img height="200px" src={{ep.image.medium}} alt={{ep.name}}>
+                </div>
+                <p matLine>
+                    <span> {{ep.summary }}  </span>
+                    <a href={{ep.url}}> {{ep.url}}</a>
+                    {{ep.airstamp}}
+                </p>
+                <mat-grid-tile-footer>
+                    <h1> S{{ep.season}}-E{{ep.number}}: {{ep.name | uppercase}}</h1>
+                </mat-grid-tile-footer>
+
+                <div fxFlex [hidden]="episodes|| errMsg">
+                    <mat-progress-bar>
+                        <h4>Loading...please wait!</h4>
+                    </mat-progress-bar>
+                </div>
+                <div fxFlex *ngIf="errMsg">
+                    <h2>Error</h2>
+                    <h4>{{errMsg}}</h4>
+                </div>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+    <app-short-info [(selectedEpisode)]="selected" [(reviews)]="reviews"></app-short-info>
+</div>
